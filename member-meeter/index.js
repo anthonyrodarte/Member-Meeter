@@ -1,21 +1,7 @@
-const musicians = []
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Users from './users.js'
+import Heading from './background.js'
 
-fetch('https://reqres.in/api/users')
-  .then(response => {
-    return response.json()
-  })
-  .then(users => {
-    users.data.map(createUser).forEach($user => {
-      musicians.push($user)
-    })
-  })
-
-function createUser(user) {
-  const $user = {
-    firstName: user.first_name,
-    lastName: user.last_name,
-    photo: user.avatar,
-    id: user.id
-  }
-  return $user
-}
+ReactDOM.render(<Heading />, document.querySelector('#header'))
+ReactDOM.render(<Users />, document.querySelector('#app'))
