@@ -57,8 +57,9 @@ export default class Users extends React.Component {
   render() {
     return (
       <div className="container">
-        <div className="row justify-content-between" style={{}}>
-          {this.state.users.map($user => (
+        <h2 className="text-center">Featured Musicians</h2>
+        <div className="row justify-content-between">
+          {this.state.users.slice(0, 4).map($user => (
             <div
               key={$user.id}
               className="card"
