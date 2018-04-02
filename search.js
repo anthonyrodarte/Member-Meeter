@@ -1,11 +1,20 @@
 import React from 'react'
+import { instruments } from './users-list.js'
 
 export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      hasSearched: this.props.status
+      hasSearched: this.props.status,
+      currentInstrument: ''
     }
+    this.checkData = this.checkData.bind(this)
+  }
+  checkData(event) {
+    this.setState({
+      currentInstrument: event.target.textContent
+    })
+    console.log(this.state.currentInstrument)
   }
   render() {
     const hasSearched = this.state.hasSearched
@@ -21,22 +30,19 @@ export default class Search extends React.Component {
                 >
                   Instruments
                 </li>
-                <button className="list-group-item list-group-item-action">
-                  Guitar
-                </button>
-                <button className="list-group-item list-group-item-action">
-                  Bass Guitar
-                </button>
-                <button className="list-group-item list-group-item-action">
-                  Drums
-                </button>
-                <button className="list-group-item list-group-item-action">
-                  Keys
-                </button>
-                <button className="list-group-item list-group-item-action">
-                  Vocals
-                </button>
-                <button className="list-group-item list-group-item-action">
+                {instruments.map($instrument => (
+                  <button
+                    className="list-group-item list-group-item-action"
+                    key={$instrument}
+                    onClick={this.checkData}
+                  >
+                    {$instrument}
+                  </button>
+                ))}
+                <button
+                  className="list-group-item list-group-item-action"
+                  onClick={this.checkData}
+                >
                   All
                 </button>
               </ul>
@@ -62,22 +68,19 @@ export default class Search extends React.Component {
                 >
                   Instruments
                 </li>
-                <button className="list-group-item list-group-item-action">
-                  Guitar
-                </button>
-                <button className="list-group-item list-group-item-action">
-                  Bass Guitar
-                </button>
-                <button className="list-group-item list-group-item-action">
-                  Drums
-                </button>
-                <button className="list-group-item list-group-item-action">
-                  Keys
-                </button>
-                <button className="list-group-item list-group-item-action">
-                  Vocals
-                </button>
-                <button className="list-group-item list-group-item-action">
+                {instruments.map($instrument => (
+                  <button
+                    className="list-group-item list-group-item-action"
+                    key={$instrument}
+                    onClick={this.checkData}
+                  >
+                    {$instrument}
+                  </button>
+                ))}
+                <button
+                  className="list-group-item list-group-item-action"
+                  onClick={this.checkData}
+                >
                   All
                 </button>
               </ul>

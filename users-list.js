@@ -7,7 +7,7 @@ const APIList = [
   'https://reqres.in/api/users?page=4'
 ]
 
-const instruments = ['Guitar', 'Drums', 'Keys', 'Bass Guitar', 'Vocals']
+export const instruments = ['Guitar', 'Drums', 'Keys', 'Bass Guitar', 'Vocals']
 const distances = [3, 5, 10, 15, 25, 40, 50]
 
 export default class UsersList extends React.Component {
