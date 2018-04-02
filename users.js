@@ -7,7 +7,7 @@ export default class Users extends React.Component {
         {this.props.users.slice(0, this.props.count).map($user => (
           <div
             key={$user.id}
-            className="card"
+            className="card text-center"
             style={{ width: this.props.width, margin: this.props.margin }}
           >
             <img className="card-img-top" src={$user.photo} alt="User Photo" />

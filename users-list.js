@@ -15,7 +15,7 @@ export default class UsersList extends React.Component {
     super(props)
     this.state = {
       users: [],
-      hasSearched: false
+      hasSearched: this.props.status
     }
   }
   componentDidMount() {
@@ -60,8 +60,8 @@ export default class UsersList extends React.Component {
             margin="20px"
           />
         ) : (
-          <div className="container">
-            <h1>Featured Users</h1>
+          <div>
+            <h2 className="text-center my-5">Featured Users</h2>
             <Users
               width="200px"
               count="4"
