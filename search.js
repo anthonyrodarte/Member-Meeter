@@ -14,7 +14,6 @@ export default class Search extends React.Component {
     this.setState({
       currentInstrument: event.target.textContent
     })
-    console.log(this.state.currentInstrument)
   }
   render() {
     const hasSearched = this.state.hasSearched
@@ -24,15 +23,12 @@ export default class Search extends React.Component {
           <div className="row">
             <div className="col-6">
               <ul className="list-group text-center">
-                <li
-                  className="list-group-item"
-                  style={{ backgroundColor: '#007bff', color: '#fff' }}
-                >
+                <li className="list-group-item bg-dark text-white">
                   Instruments
                 </li>
                 {instruments.map($instrument => (
                   <button
-                    className="list-group-item list-group-item-action"
+                    className="list-group-item list-group-item-action bg-light text-dark"
                     key={$instrument}
                     onClick={this.props.filter}
                   >
@@ -40,21 +36,12 @@ export default class Search extends React.Component {
                   </button>
                 ))}
                 <button
-                  className="list-group-item list-group-item-action"
+                  className="list-group-item list-group-item-action bg-light text-dark"
                   onClick={this.props.filter}
                 >
                   All
                 </button>
               </ul>
-              <div className="my-3 d-flex justify-content-center">
-                <button
-                  className="btn btn-primary"
-                  type="submit"
-                  onClick={this.props.search}
-                >
-                  Search
-                </button>
-              </div>
             </div>
           </div>
         ) : (
@@ -62,15 +49,12 @@ export default class Search extends React.Component {
             <div className="col-3" />
             <div className="col-3">
               <ul className="list-group text-center">
-                <li
-                  className="list-group-item"
-                  style={{ backgroundColor: '#007bff', color: '#fff' }}
-                >
+                <li className="list-group-item bg-dark text-white">
                   Instruments
                 </li>
                 {instruments.map($instrument => (
                   <button
-                    className="list-group-item list-group-item-action"
+                    className="list-group-item list-group-item-action bg-light text-dakr"
                     key={$instrument}
                     onClick={this.props.filter}
                   >
@@ -78,7 +62,7 @@ export default class Search extends React.Component {
                   </button>
                 ))}
                 <button
-                  className="list-group-item list-group-item-action"
+                  className="list-group-item list-group-item-action bg-light text-dark"
                   onClick={this.props.filter}
                 >
                   All
@@ -87,7 +71,7 @@ export default class Search extends React.Component {
             </div>
             <div className="col-3 d-flex align-items-center ml-5">
               <button
-                className="btn btn-primary"
+                className="btn btn-primary bg-dark text-white border-dark"
                 type="submit"
                 onClick={this.props.search}
               >

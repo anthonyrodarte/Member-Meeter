@@ -50,16 +50,15 @@ export default class UsersList extends React.Component {
     return $user
   }
   render() {
-    const $instrument = this.state.selectedInstrument
+    const $instrument = this.props.match
     const $users = this.state.users
     let matchedUsers = $users.filter(
-      test => test.instrument === this.state.selectedInstrument
+      user => user.instrument === this.props.match
     )
     const hasSearched = this.state.hasSearched
     if ($instrument === 'All') {
       matchedUsers = $users
     }
-
     return (
       <div className="container">
         {hasSearched ? (
