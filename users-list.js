@@ -50,11 +50,16 @@ export default class UsersList extends React.Component {
     return $user
   }
   render() {
+    const $instrument = this.state.selectedInstrument
     const $users = this.state.users
-    const matchedUsers = $users.filter(
+    let matchedUsers = $users.filter(
       test => test.instrument === this.state.selectedInstrument
     )
     const hasSearched = this.state.hasSearched
+    if ($instrument === 'All') {
+      matchedUsers = $users
+    }
+
     return (
       <div className="container">
         {hasSearched ? (
@@ -62,7 +67,7 @@ export default class UsersList extends React.Component {
             width="150px"
             count={matchedUsers.length}
             users={matchedUsers}
-            margin="20px"
+            margin="45px"
           />
         ) : (
           <div>
@@ -70,7 +75,7 @@ export default class UsersList extends React.Component {
             <Users
               width="200px"
               count="4"
-              margin="30px"
+              margin="42px"
               users={this.state.users}
             />
           </div>

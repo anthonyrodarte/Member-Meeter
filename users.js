@@ -3,7 +3,7 @@ import React from 'react'
 export default class Users extends React.Component {
   render() {
     return (
-      <div className="row justify-content-between">
+      <div className="row d-flex align-content-center flex-wrap">
         {this.props.users.slice(0, this.props.count).map($user => (
           <div
             key={$user.id}
