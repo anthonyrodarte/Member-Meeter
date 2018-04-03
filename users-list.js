@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Users from './users.js'
 const APIList = [
   'https://reqres.in/api/users?page=1',
   'https://reqres.in/api/users?page=2',
@@ -7,21 +7,16 @@ const APIList = [
   'https://reqres.in/api/users?page=4'
 ]
 
-const instruments = [
-  'Guitar',
-  'Drums',
-  'Keyboard',
-  'Piano',
-  'Bass Guitar',
-  'Vocals'
-]
+export const instruments = ['Guitar', 'Drums', 'Keys', 'Bass Guitar', 'Vocals']
 const distances = [3, 5, 10, 15, 25, 40, 50]
 
-export default class Users extends React.Component {
+export default class UsersList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      users: []
+      users: [],
+      hasSearched: this.props.status,
+      selectedInstrument: this.props.match
     }
   }
   componentDidMount() {
@@ -55,30 +50,35 @@ export default class Users extends React.Component {
     return $user
   }
   render() {
+    const $instrument = this.props.match
+    const $users = this.state.users
+    let matchedUsers = $users.filter(
+      user => user.instrument === this.props.match
+    )
+    const hasSearched = this.state.hasSearched
+    if ($instrument === 'All') {
+      matchedUsers = $users
+    }
     return (
       <div className="container">
-        <div className="row justify-content-between" style={{}}>
-          {this.state.users.map($user => (
-            <div
-              key={$user.id}
-              className="card"
-              style={{ width: '200px', margin: '30px' }}
-            >
-              <img
-                className="card-img-top"
-                src={$user.photo}
-                alt="User Photo"
-              />
-              <div className="card-body">
-                <h5 className="card-title">
-                  {$user.firstName} {$user.lastName}
-                </h5>
-                <p className="card-text">{$user.location}</p>
-                <p className="card-text">{$user.instrument}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        {hasSearched ? (
+          <Users
+            width="150px"
+            count={matchedUsers.length}
+            users={matchedUsers}
+            margin="45px"
+          />
+        ) : (
+          <div>
+            <h2 className="text-center my-5">Featured Users</h2>
+            <Users
+              width="200px"
+              count="4"
+              margin="42px"
+              users={this.state.users}
+            />
+          </div>
+        )}
       </div>
     )
   }
