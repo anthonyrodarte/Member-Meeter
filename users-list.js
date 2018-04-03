@@ -15,7 +15,8 @@ export default class UsersList extends React.Component {
     super(props)
     this.state = {
       users: [],
-      hasSearched: this.props.status
+      hasSearched: this.props.status,
+      selectedInstrument: this.props.match
     }
   }
   componentDidMount() {
@@ -49,14 +50,18 @@ export default class UsersList extends React.Component {
     return $user
   }
   render() {
+    const $users = this.state.users
+    const matchedUsers = $users.filter(
+      test => test.instrument === this.state.selectedInstrument
+    )
     const hasSearched = this.state.hasSearched
     return (
       <div className="container">
         {hasSearched ? (
           <Users
             width="150px"
-            count={this.state.users.length}
-            users={this.state.users}
+            count={matchedUsers.length}
+            users={matchedUsers}
             margin="20px"
           />
         ) : (

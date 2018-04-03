@@ -34,14 +34,14 @@ export default class Search extends React.Component {
                   <button
                     className="list-group-item list-group-item-action"
                     key={$instrument}
-                    onClick={this.checkData}
+                    onClick={this.props.filter}
                   >
                     {$instrument}
                   </button>
                 ))}
                 <button
                   className="list-group-item list-group-item-action"
-                  onClick={this.checkData}
+                  onClick={this.props.filter}
                 >
                   All
                 </button>
@@ -72,14 +72,14 @@ export default class Search extends React.Component {
                   <button
                     className="list-group-item list-group-item-action"
                     key={$instrument}
-                    onClick={this.checkData}
+                    onClick={this.props.filter}
                   >
                     {$instrument}
                   </button>
                 ))}
                 <button
                   className="list-group-item list-group-item-action"
-                  onClick={this.checkData}
+                  onClick={this.props.filter}
                 >
                   All
                 </button>
