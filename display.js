@@ -3,6 +3,7 @@ import UsersList from './users-list.js'
 import Heading from './heading.js'
 import Search from './search.js'
 import { instruments } from './users-list.js'
+import MusicianDetails from './musician-details.js'
 
 export default class Display extends React.Component {
   constructor(props) {
@@ -54,6 +55,7 @@ export default class Display extends React.Component {
           </div>
         ) : (
           <div>
+            <MusicianDetails />
             <Heading reset={this.handleReset} />
             <h3 className="text-center my-5"> Search Nearby Musicians </h3>
             <Search
