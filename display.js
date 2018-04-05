@@ -10,22 +10,36 @@ export default class Display extends React.Component {
     super(props)
     this.state = {
       hasSearched: false,
-      selectedInstrument: ''
+      selectedInstrument: '',
+      selectedMusician: null,
+      users: []
     }
     this.handleSearch = this.handleSearch.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.instrumentFilter = this.instrumentFilter.bind(this)
+    this.getUsers = this.getUsers.bind(this)
+    this.selectMusician = this.selectMusician.bind(this)
   }
   handleReset() {
     this.setState({ hasSearched: false })
     this.setState({ selectedInstrument: '' })
   }
-
   handleSearch() {
     this.setState({ hasSearched: true })
   }
   instrumentFilter(event) {
     this.setState({ selectedInstrument: event.target.textContent })
+  }
+  selectMusician(event) {
+    const $id = event.target.id
+    const selectedMusician = this.state.users.filter(user => user.id == $id)
+    this.setState({
+      selectedMusician: selectedMusician
+    })
+    console.log(this.state.selectedMusician)
+  }
+  getUsers(users) {
+    this.setState({ users: users })
   }
   render() {
     const hasSearched = this.state.hasSearched
@@ -46,8 +60,10 @@ export default class Display extends React.Component {
                 <div className="col">
                   <h3 className="text-center"> Nearby Musicians </h3>
                   <UsersList
+                    selector={this.selectMusician}
                     match={this.state.selectedInstrument}
                     status={this.state.hasSearched}
+                    getUsers={this.getUsers}
                   />
                 </div>
               </div>
@@ -55,7 +71,6 @@ export default class Display extends React.Component {
           </div>
         ) : (
           <div>
-            <MusicianDetails />
             <Heading reset={this.handleReset} />
             <h3 className="text-center my-5"> Search Nearby Musicians </h3>
             <Search
@@ -64,8 +79,10 @@ export default class Display extends React.Component {
               status={this.state.hasSearched}
             />
             <UsersList
+              selector={this.selectMusician}
               match={this.state.selectedInstrument}
               status={this.state.hasSearched}
+              getUsers={this.getUsers}
             />
           </div>
         )}
