@@ -19,6 +19,7 @@ export default class Display extends React.Component {
     this.instrumentFilter = this.instrumentFilter.bind(this)
     this.getUsers = this.getUsers.bind(this)
     this.selectMusician = this.selectMusician.bind(this)
+    this.closeDetails = this.closeDetails.bind(this)
   }
   handleReset() {
     this.setState({ hasSearched: false })
@@ -36,10 +37,14 @@ export default class Display extends React.Component {
     this.setState({
       selectedMusician: selectedMusician
     })
-    console.log(this.state.selectedMusician)
   }
   getUsers(users) {
     this.setState({ users: users })
+  }
+  closeDetails() {
+    this.setState({
+      selectedMusician: null
+    })
   }
   render() {
     const hasSearched = this.state.hasSearched
@@ -47,6 +52,10 @@ export default class Display extends React.Component {
       <div>
         {hasSearched ? (
           <div>
+            <MusicianDetails
+              musician={this.state.selectedMusician}
+              close={this.closeDetails}
+            />
             <Heading reset={this.handleReset} />
             <div className="container">
               <div className="row">
@@ -71,6 +80,10 @@ export default class Display extends React.Component {
           </div>
         ) : (
           <div>
+            <MusicianDetails
+              musician={this.state.selectedMusician}
+              close={this.closeDetails}
+            />
             <Heading reset={this.handleReset} />
             <h3 className="text-center my-5"> Search Nearby Musicians </h3>
             <Search
