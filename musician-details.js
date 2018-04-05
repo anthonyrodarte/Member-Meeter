@@ -3,11 +3,11 @@ import Modal from 'react-bootstrap4-modal'
 
 export default class MusicianDetails extends React.Component {
   render() {
-    const hasSelected = this.props.musician
+    const musician = this.props.musician
     return (
       <div>
         <Modal
-          visible={!!hasSelected}
+          visible={!!musician}
           dialogClassName="modal-dialog-centered modal-lg"
           onClickBackdrop={this.props.close}
         >
@@ -22,28 +22,35 @@ export default class MusicianDetails extends React.Component {
             </button>
           </div>
           <div className="modal-body container text-center">
-            <div className="row">
-              <div className="col-5">
-                <img
-                  src="testimg.jpg"
-                  className="rounded img-thumbnail"
-                  alt="Responsive image"
-                />
-                <h5 className="my-3">George Bluth</h5>
-                <h6 className="my-3">Anaheim, CA</h6>
-                <h6 className="my-3">Guitar</h6>
+            {musician ? (
+              <div className="row">
+                <div className="col-5">
+                  <img
+                    src={musician[0].photo}
+                    className="rounded img-thumbnail"
+                    alt="Responsive image"
+                  />
+                  <h5 className="my-3">
+                    {musician[0].firstName + ' ' + musician[0].lastName}
+                  </h5>
+                  <h6 className="my-3">{musician[0].location}</h6>
+                  <h6 className="my-3">{musician[0].instrument}</h6>
+                </div>
+                <div className="col-6">
+                  <p>
+                    Hello my name is
+                    {' ' +
+                      musician[0].firstName +
+                      ' ' +
+                      musician[0].lastName}{' '}
+                    and I have been playing {musician[0].instrument} 10 years.
+                    Please feel free to reach me at (714) 777-7777. Thank you.
+                  </p>
+                </div>
               </div>
-              <div className="col-7">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                  placerat mattis maximus. Suspendisse et metus mollis,
-                  tristique felis at, vehicula risus. Nunc vel nibh ultricies,
-                  ornare urna ac, molestie ipsum. Maecenas rutrum vestibulum
-                  elit sit amet volutpat. Integer vel augue placerat, gravida mi
-                  ac, elementum purus.
-                </p>
-              </div>
-            </div>
+            ) : (
+              <div />
+            )}
           </div>
         </Modal>
       </div>
