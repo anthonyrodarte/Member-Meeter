@@ -8,7 +8,7 @@ const APIList = [
 ]
 
 export const instruments = ['Guitar', 'Drums', 'Keys', 'Bass Guitar', 'Vocals']
-const distances = [3, 5, 10, 15, 25, 40, 50]
+const locations = ['Anaheim', 'Brea', 'Fullerton', 'Irvine']
 
 export default class UsersList extends React.Component {
   constructor(props) {
@@ -39,13 +39,19 @@ export default class UsersList extends React.Component {
   createUser(user) {
     var selectInstrument =
       instruments[Math.floor(Math.random() * instruments.length)]
-    var selectDistance = distances[Math.floor(Math.random() * distances.length)]
+    var selectLocation = locations[Math.floor(Math.random() * locations.length)]
     const $user = {
       firstName: user.first_name,
       lastName: user.last_name,
       photo: user.avatar,
-      location: selectDistance + ' miles',
+      location: selectLocation + ', CA',
       instrument: selectInstrument,
+      map:
+        'https://maps.googleapis.com/maps/api/staticmap?center=' +
+        selectLocation +
+        '+CA&zoom=13&size=350x200&maptype=roadmap&markers=' +
+        selectLocation +
+        '+CA&key=AIzaSyAUlIqQSrS2xt-aAvD3ve4LAMmH1-jKMO0',
       id: user.id
     }
     return $user
