@@ -47,7 +47,6 @@ export default class Display extends React.Component {
     })
   }
   render() {
-    console.log(this.state.selectedMusician)
     const hasSearched = this.state.hasSearched
     return (
       <div>
