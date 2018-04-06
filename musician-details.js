@@ -3,7 +3,6 @@ import Modal from 'react-bootstrap4-modal'
 
 export default function MusicianDetails(props) {
   const musician = props.musician
-  console.log(musician)
   return (
     <div>
       <Modal
