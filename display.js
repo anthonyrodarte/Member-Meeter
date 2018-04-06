@@ -33,7 +33,7 @@ export default class Display extends React.Component {
   }
   selectMusician(event) {
     const $id = event.target.id
-    const selectedMusician = this.state.users.filter(user => user.id == $id)
+    const selectedMusician = this.state.users.find(user => user.id == $id)
     this.setState({
       selectedMusician: selectedMusician
     })
