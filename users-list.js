@@ -49,7 +49,9 @@ export default class UsersList extends React.Component {
       map:
         'https://maps.googleapis.com/maps/api/staticmap?center=' +
         selectLocation +
-        '+CA&zoom=13&size=350x200&maptype=roadmap&key=AIzaSyAUlIqQSrS2xt-aAvD3ve4LAMmH1-jKMO0',
+        '+CA&zoom=13&size=350x200&maptype=roadmap&markers=' +
+        selectLocation +
+        '+CA&key=AIzaSyAUlIqQSrS2xt-aAvD3ve4LAMmH1-jKMO0',
       id: user.id
     }
     return $user
