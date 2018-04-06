@@ -42,6 +42,7 @@ export default function MusicianDetails(props) {
                   have been playing {musician.instrument} 10 years. Please feel
                   free to reach me at (714) 777-7777. Thank you.
                 </p>
+                <img src={musician.map} />
               </div>
             </div>
           )}
