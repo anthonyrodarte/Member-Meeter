@@ -33,6 +33,7 @@ export default class UsersList extends React.Component {
       this.setState({
         users: [...allUsers]
       })
+      this.props.getUsers([...allUsers])
     })
   }
   createUser(user) {
@@ -63,6 +64,7 @@ export default class UsersList extends React.Component {
       <div className="container">
         {hasSearched ? (
           <Users
+            selector={this.props.selector}
             width="150px"
             count={matchedUsers.length}
             users={matchedUsers}
@@ -72,6 +74,7 @@ export default class UsersList extends React.Component {
           <div>
             <h2 className="text-center my-5">Featured Users</h2>
             <Users
+              selector={this.props.selector}
               width="200px"
               count="4"
               margin="42px"

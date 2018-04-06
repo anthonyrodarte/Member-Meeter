@@ -3,28 +3,48 @@ import UsersList from './users-list.js'
 import Heading from './heading.js'
 import Search from './search.js'
 import { instruments } from './users-list.js'
+import MusicianDetails from './musician-details.js'
 
 export default class Display extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       hasSearched: false,
-      selectedInstrument: ''
+      selectedInstrument: '',
+      selectedMusician: null,
+      users: []
     }
     this.handleSearch = this.handleSearch.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.instrumentFilter = this.instrumentFilter.bind(this)
+    this.getUsers = this.getUsers.bind(this)
+    this.selectMusician = this.selectMusician.bind(this)
+    this.closeDetails = this.closeDetails.bind(this)
   }
   handleReset() {
     this.setState({ hasSearched: false })
     this.setState({ selectedInstrument: '' })
   }
-
   handleSearch() {
     this.setState({ hasSearched: true })
   }
   instrumentFilter(event) {
     this.setState({ selectedInstrument: event.target.textContent })
+  }
+  selectMusician(event) {
+    const $id = event.target.id
+    const selectedMusician = this.state.users.find(user => user.id == $id)
+    this.setState({
+      selectedMusician: selectedMusician
+    })
+  }
+  getUsers(users) {
+    this.setState({ users: users })
+  }
+  closeDetails() {
+    this.setState({
+      selectedMusician: null
+    })
   }
   render() {
     const hasSearched = this.state.hasSearched
@@ -32,6 +52,10 @@ export default class Display extends React.Component {
       <div>
         {hasSearched ? (
           <div>
+            <MusicianDetails
+              musician={this.state.selectedMusician}
+              close={this.closeDetails}
+            />
             <Heading reset={this.handleReset} />
             <div className="container">
               <div className="row">
@@ -45,8 +69,10 @@ export default class Display extends React.Component {
                 <div className="col">
                   <h3 className="text-center"> Nearby Musicians </h3>
                   <UsersList
+                    selector={this.selectMusician}
                     match={this.state.selectedInstrument}
                     status={this.state.hasSearched}
+                    getUsers={this.getUsers}
                   />
                 </div>
               </div>
@@ -54,6 +80,10 @@ export default class Display extends React.Component {
           </div>
         ) : (
           <div>
+            <MusicianDetails
+              musician={this.state.selectedMusician}
+              close={this.closeDetails}
+            />
             <Heading reset={this.handleReset} />
             <h3 className="text-center my-5"> Search Nearby Musicians </h3>
             <Search
@@ -62,8 +92,10 @@ export default class Display extends React.Component {
               status={this.state.hasSearched}
             />
             <UsersList
+              selector={this.selectMusician}
               match={this.state.selectedInstrument}
               status={this.state.hasSearched}
+              getUsers={this.getUsers}
             />
           </div>
         )}
